@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eBlokk.QRPage1"
+             Title="QR Code Example">
+    <Grid>
+        <Image 
+            x:Name="QRCodeImage" 
+            HorizontalOptions="Center" 
+            VerticalOptions="Center" 
+            WidthRequest="200" 
+            HeightRequest="200" />
+    </Grid>
+</ContentPage>

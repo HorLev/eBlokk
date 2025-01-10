@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eBlokk.RegisterPage"
+             Title="Regisztráció">
+
+    <VerticalStackLayout Padding="30" Spacing="15">
+        <Label Text="Regisztráció" FontSize="Large" HorizontalOptions="Center"/>
+
+        <Entry x:Name="fullNameEntry" Placeholder="Teljes név"/>
+        <Entry x:Name="emailEntry" Placeholder="Email cím" TextChanged="OnEmailEntryTextChanged"/>
+        <Entry x:Name="usernameEntry" Placeholder="Felhasználónév"/>
+        <Entry x:Name="passwordEntry" Placeholder="Jelszó" IsPassword="True"/>
+        <Entry x:Name="confirmPasswordEntry" Placeholder="Jelszó megerősítése" IsPassword="True"/>
+
+        <Button Text="Regisztráció" Clicked="OnRegisterClicked"/>
+
+        <Button Text="Már van fiókod? Jelentkezz be!" Clicked="OnLoginClicked" />
+    </VerticalStackLayout>
+</ContentPage>

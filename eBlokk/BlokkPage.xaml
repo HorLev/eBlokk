@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eBlokk.MyReceiptsPage"
+             xmlns:local="clr-namespace:eBlokk"
+             Title="eBlokk">
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout
+                Padding="30,0"
+                Spacing="25">
+                <Label
+                    Text="Blokkjaim"
+                    Style="{StaticResource Headline}"
+                    SemanticProperties.HeadingLevel="Level1" />
+                <Button Text="Szűrés" HorizontalOptions="End"/>
+
+                <!-- Blokk lista -->
+                <CollectionView ItemsSource="{Binding Receipts}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Margin="100" Padding="10" BorderColor="Gray" CornerRadius="10">
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <Label Text="{Binding Date}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Start" />
+                                        <Label Text="{Binding City}" FontSize="Small" HorizontalOptions="EndAndExpand" />
+                                    </StackLayout>
+                                    <Label Text="{Binding Chain}" FontSize="Small" />
+                                    <Label Text="{Binding Amount, StringFormat='Összesen: {0} Ft'}" HorizontalOptions="End" />
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+
+            <!-- Footer gombok ImageButton-nel, hogy ne legyen aláhúzás -->
+            <Grid Grid.Row="1" BackgroundColor="#3E4A89" VerticalOptions="End" Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Text="Kezdőlap" Grid.Column="0" Clicked="MainPageClicked"/>
+                <Button Text="Blokkjaim" Grid.Column="1" />
+                <Button Text="Profil" Grid.Column="2" Clicked="ProfilePageClicked"/>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</ContentPage>
