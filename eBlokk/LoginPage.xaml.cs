@@ -12,7 +12,7 @@ namespace eBlokk
             InitializeComponent();
         }
 
-        private async void OnLoginClicked(object sender, EventArgs e)
+        public async void OnLoginClicked(object sender, EventArgs e)
         {
             string username = usernameEntry.Text;
             string password = passwordEntry.Text;
@@ -34,6 +34,7 @@ namespace eBlokk
 
             if (success || success2)
             {
+                UserSession.Username = username;
                 // Lekérjük a bejelentkezett felhasználó QR-kódját
                 var qrCode = await dbService.GetUserQRCode(username);
                 if (!string.IsNullOrEmpty(qrCode))

@@ -13,6 +13,7 @@ namespace eBlokk
             InitializeComponent();
         }
 
+
         private async void OnRegisterClicked(object sender, EventArgs e)
         {
             string fullName = fullNameEntry.Text;

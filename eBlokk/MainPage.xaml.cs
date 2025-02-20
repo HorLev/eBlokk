@@ -11,6 +11,21 @@ namespace eBlokk
             InitializeComponent();
             BindingContext = this;
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Shell.SetBackButtonBehavior(this, new BackButtonBehavior
+            {
+                IsEnabled = false // Letiltja a vissza gombot
+            });
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true; // Ezzel letiltod a visszalépést
+        }
+
         public string Username => UserSession.Username ?? "Vendég";
         private async void OnMyReceiptsPageClicked(object sender, EventArgs e)
         {

@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
 
         <!-- Címke, amely a bejelentkezett felhasználó nevét jeleníti meg -->
-        <Label Text="{Binding Username}"
+        <Label Text="{Binding Username, StringFormat='Szia, {0}!'}"
                FontSize="24"
                HorizontalOptions="Start"
                VerticalOptions="Start"

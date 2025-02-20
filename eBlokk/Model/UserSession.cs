@@ -10,7 +10,6 @@ namespace eBlokk.Model
     {
         public static string Username { get; set; }
         public static string QRCode { get; set; }
-
-        public static User CurrentUser { get; set; }
+        public static bool IsLoggedIn => !string.IsNullOrEmpty(Username);
     }
 }

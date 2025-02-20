@@ -1,3 +1,5 @@
+using eBlokk.Model;
+
 namespace eBlokk;
 
 public partial class ProfilePage : ContentPage
@@ -18,6 +20,11 @@ public partial class ProfilePage : ContentPage
     }
     private async void Button_Clicked(object sender, EventArgs e)
     {
+        UserSession.Username = null;
+        UserSession.QRCode = null;
+
         await Navigation.PushAsync(new LoginPage());
+
+        Navigation.RemovePage(this);
     }
 }
