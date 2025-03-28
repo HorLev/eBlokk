@@ -32,9 +32,9 @@ namespace eBlokk
 
         public class YourModelType
         {
-            public string Date { get; set; }
-            public string Chain { get; set; }
-            public string City { get; set; }
+            public required string Date { get; set; }
+            public required string Chain { get; set; }
+            public required string City { get; set; }
             public int Amount { get; set; }
         }
     }

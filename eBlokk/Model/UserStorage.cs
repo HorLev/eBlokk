@@ -21,11 +21,12 @@ namespace eBlokk.Model
             return true;
         }
 
-        public static User GetUser(string username)
+        public static User? GetUser(string username)
         {
             users.TryGetValue(username, out var user);
             return user;
         }
+
 
         public static bool ValidateUser(string username, string password)
         {

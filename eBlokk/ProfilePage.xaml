@@ -2,18 +2,69 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="eBlokk.ProfilePage"
-             Title="eBlokk">
-    <Grid Grid.Row="1" BackgroundColor="#3E4A89" VerticalOptions="End" Padding="10">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+             Title="Profil"
+             BackgroundColor="White">
 
-        <Button Text="Kezdőlap" Grid.Column="0" Clicked="MainPageClicked"/>
-        <Button Text="Blokkjaim" Grid.Column="1" Clicked="OnMyReceiptsPageClicked"/>
-        <Button Text="Profil" Grid.Column="2" />
-        <Button Text="Kijelentkezés" Grid.Column="3" Clicked="Button_Clicked"/>
+    <Grid RowDefinitions="Auto,*,Auto">
+        <!-- Üzenetek gomb és értesítés ikon -->
+        <Grid BackgroundColor="White" Padding="15">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="10">
+                <Label Text="Üzenetek" FontSize="18" VerticalOptions="Center" />
+                <Frame BackgroundColor="Red" CornerRadius="10" Padding="5" HeightRequest="25" WidthRequest="25">
+                    <Label Text="2" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" />
+                </Frame>
+            </StackLayout>
+        </Grid>
+
+        <!-- Fő beállítások lista -->
+        <ScrollView Grid.Row="1">
+            <StackLayout Padding="20" Spacing="20">
+                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
+                    <Label Text="Nyelv kiválasztása" FontSize="20" />
+                    <Button Text="Választás" Clicked="OnLanguageSelectionClicked"/>
+                </Frame>
+                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
+                    <Label Text="Értesítések" FontSize="20" />
+                    <Button Text="Beállítások" Clicked="OnNotificationsClicked"/>
+                </Frame>
+                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
+                    <Label Text="Segítség" FontSize="20" />
+                    <Button Text="Segítség" Clicked="OnHelpClicked"/>
+                </Frame>
+                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
+                    <Label Text="MySPAR alkalmazás ÁSZF" FontSize="20" />
+                    <Button Text="Megnyitás" Clicked="OnTermsClicked"/>
+                </Frame>
+                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
+                    <Label Text="Cégadatok" FontSize="20" />
+                    <Button Text="Megtekintés" Clicked="OnCompanyDataClicked"/>
+                </Frame>
+                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
+                    <Label Text="Alkalmazás értékelése" FontSize="20" />
+                    <Button Text="Értékelés" Clicked="OnAppRatingClicked"/>
+                </Frame>
+                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
+                    <Label Text="Rólunk" FontSize="20" />
+                    <Button Text="További információ" Clicked="OnAboutClicked"/>
+                </Frame>
+                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
+                    <Label Text="Fiók törlése" FontSize="20" TextColor="Red" />
+                    <Button Text="Törlés" Clicked="OnDeleteAccountClicked"/>
+                </Frame>
+
+                <!-- Navigációs gombok -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
+                    <Button Text="Kezdőlap" Clicked="OnHomePageClicked" TextColor="White" BackgroundColor="#007AFF"/>
+                    <Button Text="Blokkjaim" Clicked="OnMyReceiptsPageClicked" TextColor="White" BackgroundColor="#007AFF"/>
+                    <Button Text="Profil" Clicked="OnProfilePageClicked" TextColor="White" BackgroundColor="#007AFF"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Kijelentkezés gomb -->
+        <StackLayout Grid.Row="2" Padding="20" HorizontalOptions="Center" Spacing="10">
+            <Button Text="KIJELENTKEZÉS" Clicked="OnLogoutClicked" TextColor="Red" FontAttributes="Bold"/>
+            <Label Text="Verzió 7.5.0.1239-5772611" FontSize="14" TextColor="Gray" />
+        </StackLayout>
     </Grid>
 </ContentPage>

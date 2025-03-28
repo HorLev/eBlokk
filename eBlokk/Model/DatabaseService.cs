@@ -23,8 +23,9 @@ public class DatabaseService
 
             command.Parameters.AddWithValue("@Username", username);
 
-            var result = await command.ExecuteScalarAsync();
-            return result != null ? result.ToString() : string.Empty;
+            var result = await command.ExecuteScalarAsync() as string;
+            return result ?? string.Empty;
+
         }
         catch (Exception ex)
         {

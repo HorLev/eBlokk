@@ -18,13 +18,18 @@ public partial class ProfilePage : ContentPage
         // Navigálás az új oldalra
         await Navigation.PushAsync(new MainPage());
     }
-    private async void Button_Clicked(object sender, EventArgs e)
+    private async void OnLogoutClicked(object sender, EventArgs e)
     {
-        UserSession.Username = null;
-        UserSession.QRCode = null;
+        UserSession.Username = string.Empty;
+        UserSession.QRCode = string.Empty;
 
         await Navigation.PushAsync(new LoginPage());
-
+        await DisplayAlert("Kijelentkezés", "Sikeresen Kijelentkeztél", "Ok");
         Navigation.RemovePage(this);
+    }
+
+    private void OnLanguageSelectionClicked(object sender, EventArgs e)
+    {
+
     }
 }

@@ -11,7 +11,6 @@ namespace eBlokk
         {
             InitializeComponent();
         }
-
         public async void OnLoginClicked(object sender, EventArgs e)
         {
             string username = usernameEntry.Text;
@@ -42,7 +41,7 @@ namespace eBlokk
                     UserSession.QRCode = qrCode; // QR-kód mentése a session-be
                 }
 
-                await DisplayAlert("Siker", $"Üdvözöllek, {username}!", "OK");
+                await DisplayAlert("Sikeres Bejelentkezés", $"Üdvözöllek, {username}!", "OK");
                 await Navigation.PushAsync(new MainPage());
             }
             else
@@ -69,6 +68,22 @@ namespace eBlokk
                 }
                 return builder.ToString();
             }
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                bool Exit = await Application.Current.MainPage.DisplayAlert(
+                    "Kilépés",
+                    "Biztosan ki akarsz lépni?",
+                    "Igen", "Nem");
+
+                if (Exit)
+                {
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
+                }
+            });
+            return true; // Ezzel letiltod a visszalépést
         }
     }
 }

@@ -12,21 +12,23 @@ namespace eBlokk
             BindingContext = this;
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            Shell.SetBackButtonBehavior(this, new BackButtonBehavior
-            {
-                IsEnabled = false // Letiltja a vissza gombot
-            });
-        }
-
         protected override bool OnBackButtonPressed()
         {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                bool LogOut = await Application.Current.MainPage.DisplayAlert(
+                    "Kijelentkezés",
+                    "Biztosan ki akarsz jelentkezni?",
+                    "Igen", "Nem");
+
+                if (LogOut)
+                {
+                    Navigation.PushAsync(new LoginPage()); 
+                }
+            });
             return true; // Ezzel letiltod a visszalépést
         }
 
-        public string Username => UserSession.Username ?? "Vendég";
         private async void OnMyReceiptsPageClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MyReceiptsPage());

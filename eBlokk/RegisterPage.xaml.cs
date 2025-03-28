@@ -13,6 +13,22 @@ namespace eBlokk
             InitializeComponent();
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                bool Exit = await Application.Current.MainPage.DisplayAlert(
+                    "Kilépés",
+                    "Biztosan ki akarsz lépni?",
+                    "Igen", "Nem");
+
+                if (Exit)
+                {
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
+                }
+            });
+            return true; // Ezzel letiltod a visszalépést
+        }
 
         private async void OnRegisterClicked(object sender, EventArgs e)
         {
