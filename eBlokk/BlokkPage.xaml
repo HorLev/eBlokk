@@ -5,57 +5,54 @@
              xmlns:local="clr-namespace:eBlokk"
              Title="eBlokk">
     <Grid>
-        <ScrollView>
-            <VerticalStackLayout
-                Padding="30,0"
-                Spacing="25">
-                <Label
-                    Text="Blokkjaim"
-                    Style="{StaticResource Headline}"
-                    SemanticProperties.HeadingLevel="Level1" />
-                <Button Text="Szűrés" HorizontalOptions="End"/>
-                <Button Text="Új Blokk" HorizontalOptions="Start" Clicked="AddBlokk_Clicked"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- A gombok és cím -->
+            <RowDefinition Height="*"/>
+            <!-- A blokk lista -->
+            <RowDefinition Height="60"/>
+            <!-- A footer -->
+        </Grid.RowDefinitions>
 
-                <!-- Blokk lista -->
-                <CollectionView ItemsSource="{Binding Receipts}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame Margin="100" Padding="10" BorderColor="Gray" CornerRadius="10">
-                                <StackLayout>
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                        <Label Text="{Binding Date}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Start" />
-                                        <Label Text="{Binding City}" FontSize="Small" HorizontalOptions="EndAndExpand" />
-                                    </StackLayout>
-                                    <Label Text="{Binding Chain}" FontSize="Small" />
-                                    <Label Text="{Binding Amount, StringFormat='Összesen: {0} Ft'}" HorizontalOptions="End" />
-                                </StackLayout>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+        <!-- Első sor: Cím és gombok -->
+        <VerticalStackLayout Grid.Row="0" Padding="30,0" Spacing="25">
+            <Label Text="Blokkjaim" Style="{StaticResource Headline}" SemanticProperties.HeadingLevel="Level1" />
 
-            </VerticalStackLayout>
-        </ScrollView>
+            <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,10,0,20">
+                <Button Text="Szűrés" HorizontalOptions="Start" />
+                <Button Text="Új Blokk" HorizontalOptions="End" Clicked="AddBlokk_Clicked" />
+            </StackLayout>
+        </VerticalStackLayout>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="60" />
-            </Grid.RowDefinitions>
+        <!-- Második sor: Blokk lista -->
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Receipts}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="10" Padding="10" BorderColor="Gray" CornerRadius="10">
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Date}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Start" />
+                                <Label Text="{Binding City}" FontSize="Small" HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                            <Label Text="{Binding Chain}" FontSize="Small" />
+                            <Label Text="{Binding Amount, StringFormat='Összesen: {0} Ft'}" HorizontalOptions="End" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
-            <!-- Footer gombok ImageButton-nel, hogy ne legyen aláhúzás -->
-            <Grid Grid.Row="1" BackgroundColor="#3E4A89" VerticalOptions="End" Padding="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+        <!-- Harmadik sor: Footer gombok -->
+        <Grid Grid.Row="2" BackgroundColor="#3E4A89" VerticalOptions="End" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-                <Button Text="Kezdőlap" Grid.Column="0" Clicked="MainPageClicked"/>
-                <Button Text="Blokkjaim" Grid.Column="1" />
-                <Button Text="Profil" Grid.Column="2" Clicked="ProfilePageClicked"/>
-            </Grid>
+            <Button Text="Kezdőlap" Grid.Column="0" Clicked="MainPageClicked" />
+            <Button Text="Blokkjaim" Grid.Column="1" />
+            <Button Text="Profil" Grid.Column="2" Clicked="ProfilePageClicked" />
         </Grid>
     </Grid>
-
 </ContentPage>

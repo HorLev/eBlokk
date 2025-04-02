@@ -6,11 +6,7 @@
     <VerticalStackLayout Padding="20" Spacing="15">
 
         <!-- Kép hozzáadása mező -->
-        <Frame HeightRequest="150" WidthRequest="150" 
-               BackgroundColor="LightGray" CornerRadius="10" 
-               HorizontalOptions="Center" VerticalOptions="Center">
-            <Label Text="+Kép" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center" />
-        </Frame>
+
 
         <!-- Dátum beviteli mező -->
         <DatePicker x:Name="datePicker" Format="yyyy-MM-dd" />
@@ -26,6 +22,12 @@
 
         <!-- Hozzáadás gomb -->
         <Button Text="Hozzáadás" BackgroundColor="Green" TextColor="White" />
+
+        <Frame HeightRequest="500" WidthRequest="500" 
+               BackgroundColor="LightGray" CornerRadius="10" 
+               HorizontalOptions="Center" VerticalOptions="Center" Margin="70">
+            <Label Text="+Kép" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center" />
+        </Frame>
 
     </VerticalStackLayout>
 </ContentPage>
