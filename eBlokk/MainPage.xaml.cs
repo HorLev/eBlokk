@@ -6,6 +6,7 @@ namespace eBlokk
 {
     public partial class MainPage : ContentPage
     {
+        public string Username => UserSession.Username ?? "Vendég";
         public MainPage()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace eBlokk
 
                 if (LogOut)
                 {
-                    Navigation.PushAsync(new LoginPage()); 
+                    Navigation.PushAsync(new LoginPage());
                 }
             });
             return true; // Ezzel letiltod a visszalépést
@@ -50,3 +51,4 @@ namespace eBlokk
         }
     }
 }
+

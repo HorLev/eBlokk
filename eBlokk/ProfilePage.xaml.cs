@@ -20,16 +20,31 @@ public partial class ProfilePage : ContentPage
     }
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
-        UserSession.Username = string.Empty;
-        UserSession.QRCode = string.Empty;
 
-        await Navigation.PushAsync(new LoginPage());
-        await DisplayAlert("Kijelentkezés", "Sikeresen Kijelentkeztél", "Ok");
-        Navigation.RemovePage(this);
+        Device.BeginInvokeOnMainThread(async () =>
+        {
+            bool logOut = await Application.Current.MainPage.DisplayAlert(
+                "Kijelentkezés",
+                "Biztosan ki akarsz jelentkezni?",
+                "Igen", "Nem");
+
+            if (logOut)
+            {
+                // Kijelentkeztetés 
+                UserSession.Username = string.Empty;
+                UserSession.QRCode = string.Empty;
+
+                await Application.Current.MainPage.DisplayAlert("Kijelentkezés", "Sikeresen kijelentkeztél", "Ok");
+
+                // Új fõoldal beállítása 
+                Application.Current.MainPage = new NavigationPage(new LoginPage());
+            }
+        });
+
+
+
     }
 
-    private void OnLanguageSelectionClicked(object sender, EventArgs e)
-    {
 
-    }
+
 }
