@@ -16,6 +16,10 @@ namespace eBlokk
             await Navigation.PushAsync(new ProfilePage());
         }
 
+        private async void AddBlokk_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddBlokk());
+        }
         public ObservableCollection<YourModelType> Receipts { get; set; }
 
         public MyReceiptsPage()
@@ -37,5 +41,7 @@ namespace eBlokk
             public required string City { get; set; }
             public int Amount { get; set; }
         }
+
+
     }
 }

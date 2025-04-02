@@ -18,52 +18,27 @@
 
         <!-- Fő beállítások lista -->
         <ScrollView Grid.Row="1">
-            <StackLayout Padding="20" Spacing="20">
-                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
-                    <Label Text="Nyelv kiválasztása" FontSize="20" />
-                    <Button Text="Választás" />
-                </Frame>
-                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
-                    <Label Text="Értesítések" FontSize="20" />
-                    <Button Text="Beállítások" />
-                </Frame>
-                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
-                    <Label Text="Segítség" FontSize="20" />
-                    <Button Text="Segítség" />
-                </Frame>
-                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
-                    <Label Text="MySPAR alkalmazás ÁSZF" FontSize="20" />
-                    <Button Text="Megnyitás" />
-                </Frame>
-                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
-                    <Label Text="Cégadatok" FontSize="20" />
-                    <Button Text="Megtekintés" />
-                </Frame>
-                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
-                    <Label Text="Alkalmazás értékelése" FontSize="20" />
-                    <Button Text="Értékelés" />
-                </Frame>
-                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
-                    <Label Text="Rólunk" FontSize="20" />
-                    <Button Text="További információ" />
-                </Frame>
-                <Frame HasShadow="False" Padding="15" CornerRadius="10" BorderColor="#D3D3D3">
-                    <Label Text="Fiók törlése" FontSize="20" TextColor="Red" />
-                    <Button Text="Törlés"/>
-                </Frame>
-
-                <!-- Navigációs gombok -->
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
-                    <Button Text="Kezdőlap" Clicked="MainPageClicked" TextColor="White" BackgroundColor="#007AFF"/>
-                    <Button Text="Blokkjaim" Clicked="OnMyReceiptsPageClicked" TextColor="White" BackgroundColor="#007AFF"/>
-                </StackLayout>
+            <StackLayout Padding="20" Spacing="10">
+                <Button Text="Nyelv kiválasztása" BackgroundColor="Black" TextColor="White" />
+                <Button Text="Értesítések" BackgroundColor="Black" TextColor="White" />
+                <Button Text="Segítség" BackgroundColor="Black" TextColor="White" />
+                <Button Text="MySPAR alkalmazás ÁSZF" BackgroundColor="Black" TextColor="White" />
+                <Button Text="Cégadatok" BackgroundColor="Black" TextColor="White" />
+                <Button Text="Alkalmazás értékelése" BackgroundColor="Black" TextColor="White" />
+                <Button Text="Rólunk" BackgroundColor="Black" TextColor="White" />
+                <Button Text="Fiók törlése" BackgroundColor="Black" TextColor="Red" />
             </StackLayout>
         </ScrollView>
 
-        <!-- Kijelentkezés gomb -->
+        <!-- Navigációs gombok -->
         <StackLayout Grid.Row="2" Padding="20" HorizontalOptions="Center" Spacing="10">
-            <Button Text="KIJELENTKEZÉS" Clicked="OnLogoutClicked" TextColor="Red" FontAttributes="Bold"/>
-            <Label Text="Verzió 7.5.0.1239-5772611" FontSize="14" TextColor="Gray" />
+            <StackLayout Orientation="Horizontal" Spacing="20">
+                <Button Text="Kezdőlap" BackgroundColor="#007AFF" TextColor="White" Clicked="MainPageClicked"/>
+                <Button Text="Blokkjaim" BackgroundColor="#007AFF" TextColor="White" Clicked="OnMyReceiptsPageClicked"/>
+            </StackLayout>
+
+            <Button Text="KIJELENTKEZÉS" TextColor="Red" FontAttributes="Bold" FontSize="18" HorizontalOptions="Center" Clicked="OnLogoutClicked" />
+            <Label Text="Verzió 7.5.0.1239-5772611" FontSize="14" TextColor="Gray" HorizontalOptions="Center" />
         </StackLayout>
     </Grid>
 </ContentPage>

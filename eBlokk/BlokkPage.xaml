@@ -14,6 +14,7 @@
                     Style="{StaticResource Headline}"
                     SemanticProperties.HeadingLevel="Level1" />
                 <Button Text="Szűrés" HorizontalOptions="End"/>
+                <Button Text="Új Blokk" HorizontalOptions="Start" Clicked="AddBlokk_Clicked"/>
 
                 <!-- Blokk lista -->
                 <CollectionView ItemsSource="{Binding Receipts}">
