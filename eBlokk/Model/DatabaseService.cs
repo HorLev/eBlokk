@@ -6,6 +6,7 @@ using SkiaSharp;
 using System.Diagnostics;
 using System.Data;
 using System.Net.NetworkInformation;
+using System.Collections.Generic;
 
 public class DatabaseService
 {
@@ -34,30 +35,25 @@ public class DatabaseService
         }
     }
 
-    // QR kód generálása az adatbázisból
     public async Task<string> GenerateQRCodeAsync(MySqlConnection connection)
     {
         var query = "SELECT MAX(CAST(SUBSTRING(qr, 3) AS UNSIGNED)) FROM felhasznalok WHERE qr LIKE 'QR%'";
         using var command = new MySqlCommand(query, connection);
 
-        // Lekérdezzük a legnagyobb QR-kód számot
         var result = await command.ExecuteScalarAsync();
 
         int number = 0;
 
         if (result != DBNull.Value)
         {
-            number = Convert.ToInt32(result) + 1; // Növeljük az értéket
+            number = Convert.ToInt32(result) + 1;
         }
 
-        // Új QR-kód formázása
         var qrCodeText = $"QR{number:D3}";
 
         return qrCodeText;
     }
 
-    // Felhasználó adatainak beszúrása
-    // Felhasználó adatainak beszúrása
     public async Task<bool> AddUserToDatabase(string fullName, string email, string username, string password)
     {
         try
@@ -65,7 +61,6 @@ public class DatabaseService
             using var connection = new MySqlConnection(connectionString);
             await connection.OpenAsync();
 
-            // QR kód generálása
             string qrCode = await GenerateQRCodeAsync(connection);
 
             var query = "INSERT INTO felhasznalok (qr, nev, email, felh_nev, jelszo) VALUES (@QRCode, @FullName, @Email, @Username, @Password)";
@@ -78,16 +73,15 @@ public class DatabaseService
             command.Parameters.AddWithValue("@Password", password);
 
             var result = await command.ExecuteNonQueryAsync();
-            return result > 0; // Sikeres beszúrás
+            return result > 0;
         }
         catch (Exception ex)
         {
             Debug.WriteLine($"Hiba: {ex.Message}");
-            return false; // Sikeretelen beszúrás hiba esetén
+            return false;
         }
     }
 
-    // Felhasználó validálása (bejelentkezés)
     public async Task<bool> ValidateUser(string username, string password)
     {
         try
@@ -99,10 +93,10 @@ public class DatabaseService
             using var command = new MySqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@Username", username);
-            command.Parameters.AddWithValue("@Password", password);  // Titkosított jelszó
+            command.Parameters.AddWithValue("@Password", password);
 
             var result = await command.ExecuteScalarAsync();
-            return Convert.ToInt32(result) > 0; // Ha 1-nél nagyobb a találat, akkor létezik a felhasználó
+            return Convert.ToInt32(result) > 0;
         }
         catch (Exception ex)
         {
@@ -110,4 +104,50 @@ public class DatabaseService
             return false;
         }
     }
+
+    public async Task<List<Blokk>> GetBlokkokAsync()
+    {
+        var blokkok = new List<Blokk>();
+
+        try
+        {
+            using var connection = new MySqlConnection(connectionString);
+            await connection.OpenAsync();
+
+            var query = "SELECT blk_id, fhk_qr, adatok, vasar_dt, vasar_ido, vasar_hely, uzlet FROM blokkok";
+            using var command = new MySqlCommand(query, connection);
+            using var reader = await command.ExecuteReaderAsync();
+
+            while (await reader.ReadAsync())
+            {
+                blokkok.Add(new Blokk
+                {
+                    Id = reader.GetInt32("blk_id"),
+                    QR = reader.GetString("fhk_qr"),
+                    Adatok = reader.GetString("adatok"),
+                    VasarDatum = reader.GetDateTime("vasar_dt"),
+                    VasarIdo = reader.GetString("vasar_ido"),
+                    VasarHely = reader.GetString("vasar_hely"),
+                    Uzlet = reader.GetString("uzlet")
+                });
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Hiba a blokkok lekérdezésekor: {ex.Message}");
+        }
+
+        return blokkok;
+    }
+}
+
+public class Blokk
+{
+    public int Id { get; set; }
+    public string QR { get; set; }
+    public string Adatok { get; set; }
+    public DateTime VasarDatum { get; set; }
+    public string VasarIdo { get; set; }
+    public string VasarHely { get; set; }
+    public string Uzlet { get; set; }
 }

@@ -2,54 +2,48 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="eBlokk.MyReceiptsPage"
-             xmlns:local="clr-namespace:eBlokk"
              Title="eBlokk">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <!-- A gombok és cím -->
-            <RowDefinition Height="*"/>
-            <!-- A blokk lista -->
-            <RowDefinition Height="60"/>
-            <!-- A footer -->
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
         </Grid.RowDefinitions>
 
-        <!-- Első sor: Cím és gombok -->
         <VerticalStackLayout Grid.Row="0" Padding="30,0" Spacing="25">
-            <Label Text="Blokkjaim" Style="{StaticResource Headline}" SemanticProperties.HeadingLevel="Level1" />
-
-            <StackLayout Orientation="Horizontal" Spacing="10" Margin="0,10,0,20">
-                <Button Text="Szűrés" HorizontalOptions="Start" />
-                <Button Text="Új Blokk" HorizontalOptions="End" Clicked="AddBlokk_Clicked" />
+            <Label Text="Blokkjaim" FontSize="24" FontAttributes="Bold" />
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Button Text="Szűrés" />
+                <Button Text="Új Blokk" Clicked="AddBlokk_Clicked" />
             </StackLayout>
         </VerticalStackLayout>
 
-        <!-- Második sor: Blokk lista -->
         <CollectionView Grid.Row="1" ItemsSource="{Binding Receipts}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Margin="10" Padding="10" BorderColor="Gray" CornerRadius="10">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Blokk_Tapped" />
+                        </Frame.GestureRecognizers>
                         <StackLayout>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label Text="{Binding Date}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Start" />
-                                <Label Text="{Binding City}" FontSize="Small" HorizontalOptions="EndAndExpand" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding VasarDatum, StringFormat='Dátum: {0:yyyy-MM-dd}'}" FontAttributes="Bold" />
+                                <Label Text="{Binding VasarHely}" HorizontalOptions="EndAndExpand" />
                             </StackLayout>
-                            <Label Text="{Binding Chain}" FontSize="Small" />
-                            <Label Text="{Binding Amount, StringFormat='Összesen: {0} Ft'}" HorizontalOptions="End" />
+                            <Label Text="{Binding Uzlet}" />
+                            <Label Text="{Binding Adatok}" FontSize="12" />
                         </StackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <!-- Harmadik sor: Footer gombok -->
-        <Grid Grid.Row="2" BackgroundColor="#3E4A89" VerticalOptions="End" Padding="10">
+        <Grid Grid.Row="2" BackgroundColor="#3E4A89" Padding="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
             <Button Text="Kezdőlap" Grid.Column="0" Clicked="MainPageClicked" />
             <Button Text="Blokkjaim" Grid.Column="1" />
             <Button Text="Profil" Grid.Column="2" Clicked="ProfilePageClicked" />
