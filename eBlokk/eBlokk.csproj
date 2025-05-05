@@ -60,6 +60,30 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\ellipsis.png" />
+	  <None Remove="Resources\AppIcon\home_black.png" />
+	  <None Remove="Resources\AppIcon\qr.png" />
+	  <None Remove="Resources\AppIcon\receipt_black.png" />
+	  <None Remove="Resources\AppIcon\user.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Resources\AppIcon\ellipsis.png" />
+	  <MauiImage Include="Resources\AppIcon\home_black.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiImage>
+	  <MauiImage Include="Resources\AppIcon\qr.png">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </MauiImage>
+	  <MauiImage Include="Resources\AppIcon\receipt_black.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiImage>
+	  <MauiImage Include="Resources\AppIcon\user.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiImage>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.50" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.3" />
 		<PackageReference Include="MySql.Data" Version="9.2.0" />

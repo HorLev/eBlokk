@@ -2,16 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="eBlokk.ProfilePage"
-             Title="Profil"
-             BackgroundColor="White">
+             Title="Profil">
 
     <Grid RowDefinitions="Auto,*,Auto">
+
         <!-- Üzenetek gomb és értesítés ikon -->
-        <Grid BackgroundColor="White" Padding="15">
+        <Grid Padding="15">
             <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="10">
                 <Label Text="Üzenetek" FontSize="18" VerticalOptions="Center" />
-                <Frame BackgroundColor="Red" CornerRadius="10" Padding="5" HeightRequest="25" WidthRequest="25">
-                    <Label Text="2" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" />
+                <Frame BackgroundColor="Red" CornerRadius="10" Padding="5" HeightRequest="25" WidthRequest="25" HasShadow="False">
+                    <Label Text="2" TextColor="White" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                 </Frame>
             </StackLayout>
         </Grid>
@@ -27,18 +27,60 @@
                 <Button Text="Alkalmazás értékelése" BackgroundColor="Black" TextColor="White" />
                 <Button Text="Rólunk" BackgroundColor="Black" TextColor="White" />
                 <Button Text="Fiók törlése" BackgroundColor="Black" TextColor="Red" />
+                <Button Text="KIJELENTKEZÉS"
+                    TextColor="Red"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Clicked="OnLogoutClicked" />
             </StackLayout>
         </ScrollView>
 
         <!-- Navigációs gombok -->
-        <StackLayout Grid.Row="2" Padding="20" HorizontalOptions="Center" Spacing="10">
-            <StackLayout Orientation="Horizontal" Spacing="20">
-                <Button Text="Kezdőlap" BackgroundColor="#007AFF" TextColor="White" Clicked="MainPageClicked"/>
-                <Button Text="Blokkjaim" BackgroundColor="#007AFF" TextColor="White" Clicked="OnMyReceiptsPageClicked"/>
+        <StackLayout Grid.Row="2" Padding="20" Spacing="10" HorizontalOptions="Center">
+            <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Center">
+
+                <!-- Aktív gomb -->
+                <Frame BackgroundColor="#FFEEEE" Padding="10" CornerRadius="25" HasShadow="False">
+                    <ImageButton Source="home_black.png"
+                                 BackgroundColor="Transparent"
+                                 HeightRequest="24"
+                                 WidthRequest="24"
+                                 Clicked="MainPageClicked"/>
+                </Frame>
+
+                <ImageButton Source="receipt_black.png"
+                             BackgroundColor="Transparent"
+                             HeightRequest="24"
+                             WidthRequest="24"
+                             Clicked="OnMyReceiptsPageClicked" />
+
+                <ImageButton Source="qr.png"
+                             BackgroundColor="Transparent"
+                             HeightRequest="40"
+                             WidthRequest="40"
+                             />
+
+                <ImageButton Source="user.png"
+                             BackgroundColor="Transparent"
+                             HeightRequest="24"
+                             WidthRequest="24"
+                             />
+
+                <ImageButton Source="ellipsis.png"
+                             BackgroundColor="Transparent"
+                             HeightRequest="24"
+                             WidthRequest="24" />
             </StackLayout>
 
-            <Button Text="KIJELENTKEZÉS" TextColor="Red" FontAttributes="Bold" FontSize="18" HorizontalOptions="Center" Clicked="OnLogoutClicked" />
-            <Label Text="Verzió 7.5.0.1239-5772611" FontSize="14" TextColor="Gray" HorizontalOptions="Center" />
+            <!-- Kijelentkezés gomb és verzió -->
+
+
+            <Label Text="Verzió 7.5.0.1239-5772611"
+                   FontSize="14"
+                   TextColor="Gray"
+                   HorizontalOptions="Center" />
         </StackLayout>
+
     </Grid>
 </ContentPage>
