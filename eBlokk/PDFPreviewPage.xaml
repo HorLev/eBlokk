@@ -4,7 +4,10 @@
              x:Class="eBlokk.PDFPreviewPage"
              Title="Blokk PDF">
     <StackLayout Padding="10" Spacing="20">
-        <WebView x:Name="PdfWebView" HeightRequest="600" />
+        <WebView x:Name="PdfWebView"
+                 HeightRequest="600"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand" />
         <Button Text="Letöltés" Clicked="DownloadPDF" />
     </StackLayout>
 </ContentPage>

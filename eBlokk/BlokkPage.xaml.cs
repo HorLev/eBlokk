@@ -13,16 +13,36 @@ namespace eBlokk
         public MyReceiptsPage()
         {
             InitializeComponent();
+
+            Receipts = new ObservableCollection<Blokk>();
+
             BindingContext = this;
+
             LoadBlokkok();
         }
 
+
         private async void LoadBlokkok()
         {
+            // Ez csak teszt
+            Receipts.Add(new Blokk
+            {
+                Id = 1,
+                QR = "QR001",
+                VasarDatum = DateTime.Today,
+                VasarIdo = "12:00",
+                VasarHely = "Tesztváros",
+                Uzlet = "Teszt Bolt",
+                Adatok = "Termék 1 - 1000 Ft"
+            });
+
             try
             {
                 var db = new DatabaseService();
                 var blokkok = await db.GetBlokkokAsync();
+
+                Debug.WriteLine($"Betöltött blokkok száma: {blokkok.Count}");
+
                 foreach (var blokk in blokkok)
                 {
                     Receipts.Add(blokk);
