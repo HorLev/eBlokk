@@ -126,16 +126,34 @@ public class DatabaseService
             using var reader = await command.ExecuteReaderAsync();
             while (await reader.ReadAsync())
             {
-                blokkok.Add(new Blokk
+                try
                 {
-                    Id = reader.GetInt32("blk_id"),
-                    QR = reader.GetString("fhk_qr"),
-                    Adatok = reader.GetString("adatok"),
-                    VasarDatum = reader.GetDateTime("vasar_dt"),
-                    VasarIdo = reader.GetString("vasar_ido"),
-                    VasarHely = reader.GetString("vasar_hely"),
-                    Uzlet = reader.GetString("uzlet")
-                });
+                    int id = reader.GetInt32("blk_id");
+                    string qr = reader.GetString("fhk_qr");
+                    string adatok = reader.GetString("adatok");
+                    DateTime vasarDatum = reader.GetDateTime("vasar_dt");
+                    TimeSpan vasarIdoTimeSpan = (TimeSpan)reader["vasar_ido"];
+                    string vasarIdo = vasarIdoTimeSpan.ToString(@"hh\:mm\:ss");
+                    string vasarHely = reader.GetString("vasar_hely");
+                    string uzlet = reader.GetString("uzlet");
+
+                    blokkok.Add(new Blokk
+                    {
+                        Id = id,
+                        QR = qr,
+                        Adatok = adatok,
+                        VasarDatum = vasarDatum,
+                        VasarIdo = vasarIdo,
+                        VasarHely = vasarHely,
+                        Uzlet = uzlet
+                    });
+
+                    Debug.WriteLine($"Blokk hozzáadva: {id} - {qr} - {adatok}");
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Hiba egy blokk olvasásakor: {ex.Message}");
+                }
             }
         }
         catch (Exception ex)
