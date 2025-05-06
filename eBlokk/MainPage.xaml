@@ -4,16 +4,9 @@
              x:Class="eBlokk.MainPage"
              Title="">
 
-    <Grid>
-        <!-- Grid sorok definiálása -->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <!-- Tartalom -->
-            <RowDefinition Height="60" />
-            <!-- Lábléc -->
-        </Grid.RowDefinitions>
+    <Grid RowDefinitions="*,Auto">
 
-        <!-- Címke, amely a bejelentkezett felhasználó nevét jeleníti meg -->
+        <!-- Felhasználói üdvözlés -->
         <Label Text="{Binding Username, StringFormat='Szia, {0}!'}"
                FontSize="24"
                HorizontalOptions="Start"
@@ -21,84 +14,83 @@
                Padding="20, 20, 0, 0"
                Style="{StaticResource TitleStyle}" />
 
-        <!-- Tartalom a felső sorban -->
+        <!-- Tartalom -->
         <ScrollView Grid.Row="0">
-            <VerticalStackLayout
-                Padding="30,0"
-                Spacing="25">
-                <Image
-                    Source="C:\Users\diak\Documents\HL\Projekt\VS\MauiApp1\MauiApp1\Resources\Images\blokk.png"
-                    HeightRequest="185"
-                    Aspect="AspectFit"
-                    SemanticProperties.Description="dot net bot in a race car number eight" />
+            <VerticalStackLayout Padding="30,50,30,30" Spacing="25">
+                <Image Source="blokk.png"
+                       HeightRequest="185"
+                       Aspect="AspectFit"
+                       HorizontalOptions="Center" />
 
-                <Label
-                    Text="eBlokk App"
-                    Style="{StaticResource Headline}"
-                    SemanticProperties.HeadingLevel="Level1" />
+                <Label Text="eBlokk App"
+                       Style="{StaticResource Headline}"
+                       SemanticProperties.HeadingLevel="Level1"
+                       HorizontalOptions="Center" />
 
-                <Label
-                    Text="Üdvözellek a papírmentes nyugták világában!"
-                    Style="{StaticResource SubHeadline}"
-                    SemanticProperties.HeadingLevel="Level2"
-                    SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
-
+                <Label Text="Üdvözellek a papírmentes nyugták világában!"
+                       Style="{StaticResource SubHeadline}"
+                       SemanticProperties.HeadingLevel="Level2"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Lábjegyzet a második sorban -->
-        <Frame CornerRadius="35"
-       BackgroundColor="White"
-       Padding="10"
-       Margin="20,0,20,30"
-       HeightRequest="80"
-       HorizontalOptions="FillAndExpand"
-       VerticalOptions="End"
-       HasShadow="True"
-       TranslationY="-10">
+        <!-- Reszponzív alsó navigációs sáv -->
+        <Grid Grid.Row="1"
+              Padding="20"
+              BackgroundColor="Transparent">
 
-            <Grid ColumnDefinitions="*,*,*,*,*" HorizontalOptions="FillAndExpand">
+            <Frame CornerRadius="35"
+                   BackgroundColor="White"
+                   Padding="10"
+                   Margin="30,0,30,20"
+                   HasShadow="True"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="End">
 
-                <!-- Aktív gomb -->
-                <Frame BackgroundColor="#FFEEEE" Padding="10" CornerRadius="25" HorizontalOptions="Center" VerticalOptions="Center">
-                    
-                    <ImageButton Source="home_black.png"
-                         BackgroundColor="Transparent"
-                         HeightRequest="24"
-                         WidthRequest="24"/>
-                </Frame>
+                <Grid ColumnDefinitions="*,*,*,*,*" HorizontalOptions="FillAndExpand">
 
-                <ImageButton Source="receipt_black.png"
-                     BackgroundColor="Transparent"
-                     HeightRequest="24"
-                     WidthRequest="24"
-                     Grid.Column="1"
-                     Clicked="OnMyReceiptsPageClicked" />
+                    <!-- Aktív gomb -->
+                    <Frame BackgroundColor="#FFEEEE"
+                           Padding="10"
+                           CornerRadius="25"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center">
+                        <ImageButton Source="home_black.png"
+                                     BackgroundColor="Transparent"
+                                     HeightRequest="24"
+                                     WidthRequest="24" />
+                    </Frame>
 
-                <ImageButton Source="qr.png"
-                     BackgroundColor="Transparent"
-                     HeightRequest="40"
-                     WidthRequest="40"
-                     Grid.Column="2"
-                     Clicked="Button_Clicked_1" />
+                    <ImageButton Grid.Column="1"
+                                 Source="receipt_black.png"
+                                 BackgroundColor="Transparent"
+                                 HeightRequest="24"
+                                 WidthRequest="24"
+                                 Clicked="OnMyReceiptsPageClicked" />
 
+                    <ImageButton Grid.Column="2"
+                                 Source="qr.png"
+                                 BackgroundColor="Transparent"
+                                 HeightRequest="40"
+                                 WidthRequest="40"
+                                 Clicked="Button_Clicked_1" />
 
-                <ImageButton Source="user.png"
-                     BackgroundColor="Transparent"
-                     HeightRequest="24"
-                     WidthRequest="24"
-                     Grid.Column="3"
-                     Clicked="ProfilePageClicked" />
+                    <ImageButton Grid.Column="3"
+                                 Source="user.png"
+                                 BackgroundColor="Transparent"
+                                 HeightRequest="24"
+                                 WidthRequest="24"
+                                 Clicked="ProfilePageClicked" />
 
-                <ImageButton Source="ellipsis.png"
-                     BackgroundColor="Transparent"
-                     HeightRequest="24"
-                     WidthRequest="24"
-                     Grid.Column="4" />
-
-            </Grid>
-        </Frame>
+                    <ImageButton Grid.Column="4"
+                                 Source="ellipsis.png"
+                                 BackgroundColor="Transparent"
+                                 HeightRequest="24"
+                                 WidthRequest="24" />
+                </Grid>
+            </Frame>
+        </Grid>
 
     </Grid>
 </ContentPage>
-

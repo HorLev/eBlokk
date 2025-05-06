@@ -3,22 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="eBlokk.MyReceiptsPage"
              Title="eBlokk">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="60" />
-        </Grid.RowDefinitions>
 
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- Fejléc és gombok -->
         <VerticalStackLayout Grid.Row="0" Padding="30,0" Spacing="25">
-            <Label Text="Blokkjaim" FontSize="24" FontAttributes="Bold" />
+            <Label Text="Blokkjaim"
+                   FontSize="24"
+                   FontAttributes="Bold" />
             <StackLayout Orientation="Horizontal" Spacing="10">
                 <Button Text="Szűrés" />
                 <Button Text="Új Blokk" Clicked="AddBlokk_Clicked" />
             </StackLayout>
         </VerticalStackLayout>
 
-        <CollectionView Grid.Row="1" ItemsSource="{Binding Receipts}">
+        <!-- Tartalom - blokkok listája -->
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Receipts}" Margin="10,0">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Margin="10" Padding="10" BorderColor="Gray" CornerRadius="10">
@@ -38,15 +38,63 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Grid Grid.Row="2" BackgroundColor="#3E4A89" Padding="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Button Text="Kezdőlap" Grid.Column="0" Clicked="MainPageClicked" />
-            <Button Text="Blokkjaim" Grid.Column="1" />
-            <Button Text="Profil" Grid.Column="2" Clicked="ProfilePageClicked" />
+        <!-- Reszponzív alsó navigációs sáv -->
+        <Grid Grid.Row="2"
+              Padding="10"
+              BackgroundColor="Transparent">
+
+            <Frame CornerRadius="35"
+                   BackgroundColor="White"
+                   Padding="10"
+                   Margin="20,0,20,20"
+                   HasShadow="True"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="End"
+                   TranslationY="-10">
+
+                <Grid ColumnDefinitions="*,*,*,*,*" HorizontalOptions="FillAndExpand">
+
+                    <!-- Aktív gomb -->
+                    <Frame BackgroundColor="#FFEEEE"
+                           Padding="10"
+                           CornerRadius="25"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center">
+                        <ImageButton Source="home_black.png"
+                                     BackgroundColor="Transparent"
+                                     HeightRequest="24"
+                                     WidthRequest="24"
+                                     Clicked="MainPageClicked" />
+                    </Frame>
+
+                    <ImageButton Grid.Column="1"
+                                 Source="receipt_black.png"
+                                 BackgroundColor="Transparent"
+                                 HeightRequest="24"
+                                 WidthRequest="24"
+                                 />
+
+                    <ImageButton Grid.Column="2"
+                                 Source="qr.png"
+                                 BackgroundColor="Transparent"
+                                 HeightRequest="40"
+                                 WidthRequest="40"
+                                 />
+
+                    <ImageButton Grid.Column="3"
+                                 Source="user.png"
+                                 BackgroundColor="Transparent"
+                                 HeightRequest="24"
+                                 WidthRequest="24"
+                                 Clicked="ProfilePageClicked" />
+
+                    <ImageButton Grid.Column="4"
+                                 Source="ellipsis.png"
+                                 BackgroundColor="Transparent"
+                                 HeightRequest="24"
+                                 WidthRequest="24" />
+                </Grid>
+            </Frame>
         </Grid>
     </Grid>
 </ContentPage>
