@@ -19,6 +19,7 @@ namespace eBlokk
 
         private void GenerateAndDisplayPDF()
         {
+            License.LicenseKey = "IRONSUITE.HLEVI200408.GMAIL.COM.21949-3BB8CD7E6D-P33BF-LDKSYC4UGUCA-SPT7ZLSR6IDD-7FLXC4BB5RDN-OOVSNZUZU5B7-LNIVUVC4KMM4-4LNCJIP57BA7-BYPG3Y-TYQ5GNF7OFGPUA-DEPLOYMENT.TRIAL-ETUF53.TRIAL.EXPIRES.17.JUN.2025";
             var Renderer = new ChromePdfRenderer();
 
             var penztaros = "2M/H";
@@ -90,6 +91,7 @@ namespace eBlokk
 
         private async void DownloadPDF(object sender, EventArgs e)
         {
+            License.LicenseKey = "IRONSUITE.HLEVI200408.GMAIL.COM.21949-3BB8CD7E6D-P33BF-LDKSYC4UGUCA-SPT7ZLSR6IDD-7FLXC4BB5RDN-OOVSNZUZU5B7-LNIVUVC4KMM4-4LNCJIP57BA7-BYPG3Y-TYQ5GNF7OFGPUA-DEPLOYMENT.TRIAL-ETUF53.TRIAL.EXPIRES.17.JUN.2025";
             var Renderer = new ChromePdfRenderer();
 
             var penztaros = "2M/H";
