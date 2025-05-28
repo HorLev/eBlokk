@@ -2,96 +2,76 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="eBlokk.ProfilePage"
-             Title="Profil">
+             Title="Profilom">
 
     <Grid RowDefinitions="Auto,*,Auto">
 
-        <!-- Üzenetek gomb és értesítés ikon -->
         <Grid Padding="15">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="10">
-                <Label Text="Üzenetek" FontSize="18" VerticalOptions="Center" />
-                <Frame BackgroundColor="Red" CornerRadius="10" Padding="5"
-                       HeightRequest="25" WidthRequest="25" HasShadow="False">
-                    <Label Text="2" TextColor="White" FontSize="12"
-                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                </Frame>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                <ImageButton Source="ringing.png"
+                     HeightRequest="24"
+                     WidthRequest="24"
+                     Margin="0,0,10,0"
+                     BackgroundColor="Transparent"
+                     Clicked="OnNotificationClicked" />
             </StackLayout>
         </Grid>
 
-        <!-- Fő beállítások lista -->
         <ScrollView Grid.Row="1">
             <StackLayout Padding="20" Spacing="10">
-                <Button Text="Nyelv kiválasztása" BackgroundColor="Black" TextColor="White" />
-                <Button Text="Értesítések" BackgroundColor="Black" TextColor="White" />
-                <Button Text="Segítség" BackgroundColor="Black" TextColor="White" />
-                <Button Text="MySPAR alkalmazás ÁSZF" BackgroundColor="Black" TextColor="White" />
-                <Button Text="Cégadatok" BackgroundColor="Black" TextColor="White" />
-                <Button Text="Alkalmazás értékelése" BackgroundColor="Black" TextColor="White" />
-                <Button Text="Rólunk" BackgroundColor="Black" TextColor="White" />
-                <Button Text="Fiók törlése" BackgroundColor="Black" TextColor="Red" />
+                <Button Text="GYIK" BackgroundColor="Black" TextColor="White" Clicked="OnGyikClicked"/>
+                <Button Text="Alkalmazás értékelése" BackgroundColor="Black" TextColor="White" Clicked="OnRateClicked"/>
+                <Button Text="Rólunk" BackgroundColor="Black" TextColor="White" Clicked="OnAboutClicked"/>
                 <Button Text="KIJELENTKEZÉS"
                         TextColor="Red"
                         FontAttributes="Bold"
                         FontSize="18"
                         HorizontalOptions="Center"
                         Clicked="OnLogoutClicked" />
+                <Button Text="FIÓK TÖRLÉSE"
+                        TextColor="Red"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        HorizontalOptions="Center"
+                        Clicked="OnDeleteAccountClicked" />
             </StackLayout>
         </ScrollView>
 
-        <!-- Navigációs sáv és verzió -->
         <Grid Grid.Row="2" Padding="10">
             <Frame CornerRadius="35"
                    BackgroundColor="White"
                    Padding="10"
-                   Margin="20,0,20,20"
+                   Margin="70,0,70,20"
                    HasShadow="True"
                    HorizontalOptions="FillAndExpand"
                    VerticalOptions="End"
                    TranslationY="-10">
 
-                <Grid ColumnDefinitions="*,*,*,*,*" HorizontalOptions="FillAndExpand">
+                <Grid ColumnDefinitions="*,*,*" HorizontalOptions="FillAndExpand">
 
-                    <!-- Aktív gomb -->
-                    <Frame BackgroundColor="#FFEEEE"
-                           Padding="10"
-                           CornerRadius="25"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center">
-                        <ImageButton Source="home_black.png"
-                                     BackgroundColor="Transparent"
-                                     HeightRequest="24"
-                                     WidthRequest="24"
-                                     Clicked="MainPageClicked" />
-                    </Frame>
-
-                    <ImageButton Grid.Column="1"
+                    <ImageButton Grid.Column="0"
                                  Source="receipt_black.png"
                                  BackgroundColor="Transparent"
                                  HeightRequest="24"
                                  WidthRequest="24"
                                  Clicked="OnMyReceiptsPageClicked" />
 
-                    <ImageButton Grid.Column="2"
-                                 Source="qr.png"
-                                 BackgroundColor="Transparent"
-                                 HeightRequest="40"
-                                 WidthRequest="40" />
-
-                    <ImageButton Grid.Column="3"
-                                 Source="user.png"
+                    <ImageButton Grid.Column="1"
+                                 Source="home_black.png"
                                  BackgroundColor="Transparent"
                                  HeightRequest="24"
-                                 WidthRequest="24" />
+                                 WidthRequest="24"
+                                 Clicked="MainPageClicked" />
 
-                    <ImageButton Grid.Column="4"
-                                 Source="ellipsis.png"
+                    <ImageButton Grid.Column="2"
+                                 Source="user.png"
                                  BackgroundColor="Transparent"
                                  HeightRequest="24"
                                  WidthRequest="24" />
                 </Grid>
             </Frame>
 
-            <Label Text="Verzió 7.5.0.1239-5772611"
+            <Label Text="0.0.1"
                    FontSize="14"
                    TextColor="Gray"
                    HorizontalOptions="Center"

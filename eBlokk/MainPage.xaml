@@ -2,23 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="eBlokk.MainPage"
-             Title="">
+             Title="{Binding Greeting}">
 
     <Grid RowDefinitions="*,Auto">
 
-        <!-- Felhasználói üdvözlés -->
-        <Label Text="{Binding Username, StringFormat='Szia, {0}!'}"
-               FontSize="24"
-               HorizontalOptions="Start"
-               VerticalOptions="Start"
-               Padding="20, 20, 0, 0"
-               Style="{StaticResource TitleStyle}" />
-
-        <!-- Tartalom -->
         <ScrollView Grid.Row="0">
             <VerticalStackLayout Padding="30,50,30,30" Spacing="25">
-                <Image Source="blokk.png"
-                       HeightRequest="185"
+                <Image Source="logo.png"
+                       HeightRequest="200"
                        Aspect="AspectFit"
                        HorizontalOptions="Center" />
 
@@ -35,7 +26,6 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Reszponzív alsó navigációs sáv -->
         <Grid Grid.Row="1"
               Padding="20"
               BackgroundColor="Transparent">
@@ -43,51 +33,33 @@
             <Frame CornerRadius="35"
                    BackgroundColor="White"
                    Padding="10"
-                   Margin="30,0,30,20"
+                   Margin="70,0,70,20"
                    HasShadow="True"
                    HorizontalOptions="FillAndExpand"
                    VerticalOptions="End">
 
-                <Grid ColumnDefinitions="*,*,*,*,*" HorizontalOptions="FillAndExpand">
+                <Grid ColumnDefinitions="*,*,*" HorizontalOptions="FillAndExpand">
 
-                    <!-- Aktív gomb -->
-                    <Frame BackgroundColor="#FFEEEE"
-                           Padding="10"
-                           CornerRadius="25"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center">
-                        <ImageButton Source="home_black.png"
-                                     BackgroundColor="Transparent"
-                                     HeightRequest="24"
-                                     WidthRequest="24" />
-                    </Frame>
-
-                    <ImageButton Grid.Column="1"
+                    <ImageButton Grid.Column="0"
                                  Source="receipt_black.png"
                                  BackgroundColor="Transparent"
                                  HeightRequest="24"
                                  WidthRequest="24"
                                  Clicked="OnMyReceiptsPageClicked" />
 
-                    <ImageButton Grid.Column="2"
+                    <ImageButton Grid.Column="1"
                                  Source="qr.png"
                                  BackgroundColor="Transparent"
                                  HeightRequest="40"
                                  WidthRequest="40"
                                  Clicked="Button_Clicked_1" />
 
-                    <ImageButton Grid.Column="3"
+                    <ImageButton Grid.Column="2"
                                  Source="user.png"
                                  BackgroundColor="Transparent"
                                  HeightRequest="24"
                                  WidthRequest="24"
                                  Clicked="ProfilePageClicked" />
-
-                    <ImageButton Grid.Column="4"
-                                 Source="ellipsis.png"
-                                 BackgroundColor="Transparent"
-                                 HeightRequest="24"
-                                 WidthRequest="24" />
                 </Grid>
             </Frame>
         </Grid>

@@ -16,17 +16,14 @@ namespace eBlokk
             string username = usernameEntry.Text;
             string password = passwordEntry.Text;
 
-            // Ellenõrizzük, hogy mindkét mezõ kitöltött-e
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 await DisplayAlert("Hiba", "Felhasználónév és jelszó megadása kötelezõ", "OK");
                 return;
             }
 
-            // Jelszó titkosítása (SHA256)
             var hashedPassword = HashPassword(password);
 
-            // Adatok ellenõrzése az adatbázisban
             var dbService = new DatabaseService();
             bool success = await dbService.ValidateUser(username, hashedPassword);
             bool success2 = await dbService.ValidateUser(username, password);
@@ -34,11 +31,10 @@ namespace eBlokk
             if (success || success2)
             {
                 UserSession.Username = username;
-                // Lekérjük a bejelentkezett felhasználó QR-kódját
                 var qrCode = await dbService.GetUserQRCode(username);
                 if (!string.IsNullOrEmpty(qrCode))
                 {
-                    UserSession.QRCode = qrCode; // QR-kód mentése a session-be
+                    UserSession.QRCode = qrCode;
                 }
 
                 await DisplayAlert("Sikeres Bejelentkezés", $"Üdvözöllek, {username}!", "OK");
@@ -55,7 +51,6 @@ namespace eBlokk
             await Navigation.PushAsync(new RegisterPage());
         }
 
-        // Jelszó titkosítása SHA-256 segítségével
         private string HashPassword(string password)
         {
             using (SHA256 sha256Hash = SHA256.Create())
@@ -83,7 +78,7 @@ namespace eBlokk
                     System.Diagnostics.Process.GetCurrentProcess().Kill();
                 }
             });
-            return true; // Ezzel letiltod a visszalépést
+            return true;
         }
     }
 }

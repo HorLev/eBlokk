@@ -8,7 +8,10 @@ using System.Data;
 
 public class DatabaseService
 {
+    //pc sql connect
     private readonly string connectionString = "Server=localhost;Port=3306;Database=eblokk;User ID=root;Password=;";
+    //mobile sql connect
+    //private readonly string connectionString = "Server=10.0.2.2;Database=eblokk;Uid=eblokkuser;Pwd=eblokk123;";
 
     public async Task<string> GetUserQRCode(string username)
     {
@@ -163,6 +166,28 @@ public class DatabaseService
 
         return blokkok;
     }
+
+    public async Task<bool> DeleteUserAsync(string username)
+    {
+        try
+        {
+            using var connection = new MySqlConnection(connectionString);
+            await connection.OpenAsync();
+
+            var query = "DELETE FROM felhasznalok WHERE felh_nev = @Username";
+            using var command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Username", username);
+
+            int result = await command.ExecuteNonQueryAsync();
+            return result > 0;
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Hiba a felhasználó törlésekor: {ex.Message}");
+            return false;
+        }
+    }
+
 }
 
 public class Blokk

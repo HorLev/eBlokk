@@ -58,6 +58,56 @@ namespace eBlokk
             await Navigation.PushAsync(new AddBlokk());
         }
 
+        private async void OnFilterButtonClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                string dateInput = await DisplayPromptAsync("Szûrés", "Írj be egy dátumot (ÉÉÉÉ-HH-NN) vagy hagyd üresen:", "Tovább", "Mégse");
+                DateTime? dateFilter = null;
+
+                if (!string.IsNullOrWhiteSpace(dateInput) && DateTime.TryParse(dateInput, out DateTime parsedDate))
+                {
+                    dateFilter = parsedDate.Date;
+                }
+
+                string storeFilter = await DisplayPromptAsync("Szûrés", "Írj be egy üzletnevet (vagy hagyd üresen):", "Tovább", "Mégse");
+
+                string locationFilter = await DisplayPromptAsync("Szûrés", "Írj be egy helyszínt (vagy hagyd üresen):", "Szûrés", "Mégse");
+
+                await ApplyFilterAsync(dateFilter, storeFilter, locationFilter);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Szûrési hiba: {ex.Message}");
+            }
+        }
+
+        private async Task ApplyFilterAsync(DateTime? date, string? store, string? location)
+        {
+            Receipts.Clear();
+
+            try
+            {
+                var db = new DatabaseService();
+                var allBlokkok = await db.GetBlokkokAsync();
+
+                var filtered = allBlokkok.Where(b =>
+                    (date == null || b.VasarDatum.Date == date.Value) &&
+                    (string.IsNullOrWhiteSpace(store) || b.Uzlet.Contains(store, StringComparison.OrdinalIgnoreCase)) &&
+                    (string.IsNullOrWhiteSpace(location) || b.VasarHely.Contains(location, StringComparison.OrdinalIgnoreCase))
+                );
+
+                foreach (var blokk in filtered)
+                {
+                    Receipts.Add(blokk);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Hiba szûrés közben: {ex.Message}");
+            }
+        }
+
         private async void MainPageClicked(object sender, EventArgs e) => await Navigation.PushAsync(new MainPage());
         private async void ProfilePageClicked(object sender, EventArgs e) => await Navigation.PushAsync(new ProfilePage());
     }

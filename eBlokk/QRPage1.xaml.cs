@@ -20,7 +20,6 @@ namespace eBlokk
         {
             base.OnAppearing();
 
-            // QR-kód generálása és megjelenítése
             await GenerateAndDisplayQRCodeAsync();
         }
 
@@ -28,7 +27,6 @@ namespace eBlokk
         {
             try
             {
-                // Bejelentkezett felhasználó QR-kódjának lekérdezése
                 string qrCodeText = UserSession.QRCode;
 
                 if (string.IsNullOrEmpty(qrCodeText))
@@ -42,10 +40,8 @@ namespace eBlokk
                     Debug.WriteLine($"QR-kód adatok: {qrCodeText}");
                 }
 
-                // QR-kód kép generálása
                 var qrCodeImage = GenerateQRCodeImage(qrCodeText);
 
-                // Kép megjelenítése az Image vezérlõben
                 QRCodeImage.Source = BitmapToImageSource(qrCodeImage);
             }
             catch (Exception ex)
@@ -60,7 +56,6 @@ namespace eBlokk
             {
                 var qrCodeData = qrGenerator.CreateQrCode(qrCodeText, ECCLevel.L);
 
-                // QR-kód méret és cellaméret meghatározása
                 int cellSize = 10;
                 int qrCodeSize = qrCodeData.ModuleMatrix.Count * cellSize;
 
@@ -76,7 +71,7 @@ namespace eBlokk
                         {
                             for (int col = 0; col < qrCodeData.ModuleMatrix.Count; col++)
                             {
-                                if (qrCodeData.ModuleMatrix[row][col]) // Modul sötét (true) vagy világos (false)
+                                if (qrCodeData.ModuleMatrix[row][col])
                                 {
                                     var x = col * cellSize;
                                     var y = row * cellSize;
@@ -96,13 +91,11 @@ namespace eBlokk
         {
             using (var ms = new System.IO.MemoryStream())
             {
-                // SKBitmap átalakítása SKImage-re, majd PNG formátumban kódolás
                 var skImage = SKImage.FromBitmap(bitmap);
                 skImage.Encode(SKEncodedImageFormat.Png, 100).SaveTo(ms);
 
-                // A memória stream-t átalakítjuk egy RandomAccessStream-re
-                ms.Seek(0, System.IO.SeekOrigin.Begin);  // Mielõtt visszaadjuk a stream-et, állítsuk be a pozíciót
-                return ImageSource.FromStream(() => new System.IO.MemoryStream(ms.ToArray()));  // Készítünk egy új memória stream-et
+                ms.Seek(0, System.IO.SeekOrigin.Begin);
+                return ImageSource.FromStream(() => new System.IO.MemoryStream(ms.ToArray()));
             }
         }
     }

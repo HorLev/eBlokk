@@ -60,22 +60,38 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\document.png" />
 	  <None Remove="Resources\AppIcon\ellipsis.png" />
+	  <None Remove="Resources\AppIcon\filter.png" />
 	  <None Remove="Resources\AppIcon\home_black.png" />
+	  <None Remove="Resources\AppIcon\logo.png" />
 	  <None Remove="Resources\AppIcon\qr.png" />
 	  <None Remove="Resources\AppIcon\receipt_black.png" />
+	  <None Remove="Resources\AppIcon\ringing.png" />
 	  <None Remove="Resources\AppIcon\user.png" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Resources\AppIcon\document.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiImage>
 	  <MauiImage Include="Resources\AppIcon\ellipsis.png" />
+	  <MauiImage Include="Resources\AppIcon\filter.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiImage>
 	  <MauiImage Include="Resources\AppIcon\home_black.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiImage>
+	  <MauiImage Include="Resources\AppIcon\logo.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </MauiImage>
 	  <MauiImage Include="Resources\AppIcon\qr.png">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </MauiImage>
 	  <MauiImage Include="Resources\AppIcon\receipt_black.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </MauiImage>
+	  <MauiImage Include="Resources\AppIcon\ringing.png">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </MauiImage>
 	  <MauiImage Include="Resources\AppIcon\user.png">

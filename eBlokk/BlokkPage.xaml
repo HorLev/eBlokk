@@ -2,43 +2,57 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="eBlokk.MyReceiptsPage"
-             Title="eBlokk">
+             Title="Blokkjaim">
 
     <Grid RowDefinitions="Auto,*,Auto">
 
-        <!-- Fejléc és gombok -->
-        <VerticalStackLayout Grid.Row="0" Padding="30,0" Spacing="25">
-            <Label Text="Blokkjaim"
-                   FontSize="24"
-                   FontAttributes="Bold" />
-            <StackLayout Orientation="Horizontal" Spacing="10">
-                <Button Text="Szűrés" />
-                <Button Text="Új Blokk" Clicked="AddBlokk_Clicked" />
+        <VerticalStackLayout 
+            Grid.Row="0" 
+            Margin="0,20,20,0"
+            Padding="0"
+            Spacing="0">
+            <StackLayout 
+                Orientation="Horizontal" 
+                Spacing="10"
+                HorizontalOptions="End"
+                VerticalOptions="Start">
+                <ImageButton 
+                Source="filter.png"
+                Clicked="OnFilterButtonClicked"
+                WidthRequest="24" 
+                HeightRequest="24"
+                BackgroundColor="Transparent"/>
+                <ImageButton 
+                Source="document.png" 
+                Clicked="AddBlokk_Clicked"
+                WidthRequest="24" 
+                HeightRequest="24"
+                BackgroundColor="Transparent"/>
             </StackLayout>
         </VerticalStackLayout>
 
-        <!-- Tartalom - blokkok listája -->
-        <CollectionView Grid.Row="1" ItemsSource="{Binding Receipts}" Margin="10,0">
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Receipts}" Margin="40,30">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="5" />
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Margin="10" Padding="10" BorderColor="Gray" CornerRadius="10">
+                    <Frame Margin="0,0,0,20" Padding="10" BorderColor="Gray" CornerRadius="10">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Blokk_Tapped" />
                         </Frame.GestureRecognizers>
                         <StackLayout>
-                            <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" Spacing="10">
                                 <Label Text="{Binding VasarDatum, StringFormat='Dátum: {0:yyyy-MM-dd}'}" FontAttributes="Bold" />
                                 <Label Text="{Binding VasarHely}" HorizontalOptions="EndAndExpand" />
                             </StackLayout>
                             <Label Text="{Binding Uzlet}" />
-                            <Label Text="{Binding Adatok}" FontSize="12" />
                         </StackLayout>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <!-- Reszponzív alsó navigációs sáv -->
         <Grid Grid.Row="2"
               Padding="10"
               BackgroundColor="Transparent">
@@ -46,53 +60,34 @@
             <Frame CornerRadius="35"
                    BackgroundColor="White"
                    Padding="10"
-                   Margin="20,0,20,20"
+                   Margin="70,0,70,20"
                    HasShadow="True"
                    HorizontalOptions="FillAndExpand"
                    VerticalOptions="End"
                    TranslationY="-10">
 
-                <Grid ColumnDefinitions="*,*,*,*,*" HorizontalOptions="FillAndExpand">
+                <Grid ColumnDefinitions="*,*,*" HorizontalOptions="FillAndExpand">
 
-                    <!-- Aktív gomb -->
-                    <Frame BackgroundColor="#FFEEEE"
-                           Padding="10"
-                           CornerRadius="25"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center">
-                        <ImageButton Source="home_black.png"
-                                     BackgroundColor="Transparent"
-                                     HeightRequest="24"
-                                     WidthRequest="24"
-                                     Clicked="MainPageClicked" />
-                    </Frame>
-
-                    <ImageButton Grid.Column="1"
+                    <ImageButton Grid.Column="0"
                                  Source="receipt_black.png"
                                  BackgroundColor="Transparent"
                                  HeightRequest="24"
                                  WidthRequest="24"
                                  />
 
-                    <ImageButton Grid.Column="2"
-                                 Source="qr.png"
+                    <ImageButton Grid.Column="1"
+                                 Source="home_black.png"
                                  BackgroundColor="Transparent"
-                                 HeightRequest="40"
-                                 WidthRequest="40"
-                                 />
+                                 HeightRequest="24"
+                                 WidthRequest="24"
+                                 Clicked="MainPageClicked" />
 
-                    <ImageButton Grid.Column="3"
+                    <ImageButton Grid.Column="2"
                                  Source="user.png"
                                  BackgroundColor="Transparent"
                                  HeightRequest="24"
                                  WidthRequest="24"
                                  Clicked="ProfilePageClicked" />
-
-                    <ImageButton Grid.Column="4"
-                                 Source="ellipsis.png"
-                                 BackgroundColor="Transparent"
-                                 HeightRequest="24"
-                                 WidthRequest="24" />
                 </Grid>
             </Frame>
         </Grid>

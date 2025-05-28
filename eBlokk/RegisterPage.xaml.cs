@@ -27,7 +27,7 @@ namespace eBlokk
                     System.Diagnostics.Process.GetCurrentProcess().Kill();
                 }
             });
-            return true; // Ezzel letiltod a visszalépést
+            return true;
         }
 
         private async void OnRegisterClicked(object sender, EventArgs e)
